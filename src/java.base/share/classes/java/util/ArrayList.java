@@ -138,11 +138,19 @@ public class ArrayList<E> extends AbstractList<E>
     transient Object[] elementData; // non-private to simplify nested class access
 
     /**
+     * Author: Sean Thomas Wald
+     * crested new string for the print messages
+     */
+    private static final String PRINTMSG = " was called.";
+
+    /**
      * The size of the ArrayList (the number of elements it contains).
      *
      * @serial
      */
     private int size;
+
+    
 
     /**
      * Constructs an empty list with the specified initial capacity.
@@ -152,6 +160,7 @@ public class ArrayList<E> extends AbstractList<E>
      *         is negative
      */
     public ArrayList(int initialCapacity) {
+        System.out.print("Constructor [1 int param]" + PRINTMSG);
         if (initialCapacity > 0) {
             this.elementData = new Object[initialCapacity];
         } else if (initialCapacity == 0) {
@@ -166,6 +175,7 @@ public class ArrayList<E> extends AbstractList<E>
      * Constructs an empty list with an initial capacity of ten.
      */
     public ArrayList() {
+        System.out.print("Constructor [0 param]" + PRINTMSG);
         this.elementData = DEFAULTCAPACITY_EMPTY_ELEMENTDATA;
     }
 
@@ -178,6 +188,7 @@ public class ArrayList<E> extends AbstractList<E>
      * @throws NullPointerException if the specified collection is null
      */
     public ArrayList(Collection<? extends E> c) {
+        System.out.print("Constructor [1 Collection<E> param]" + PRINTMSG);
         Object[] a = c.toArray();
         if ((size = a.length) != 0) {
             if (c.getClass() == ArrayList.class) {
@@ -197,6 +208,7 @@ public class ArrayList<E> extends AbstractList<E>
      * the storage of an {@code ArrayList} instance.
      */
     public void trimToSize() {
+        System.out.print("Method: trimToSize()" + PRINTMSG);
         modCount++;
         if (size < elementData.length) {
             elementData = (size == 0)
@@ -213,6 +225,7 @@ public class ArrayList<E> extends AbstractList<E>
      * @param minCapacity the desired minimum capacity
      */
     public void ensureCapacity(int minCapacity) {
+        System.out.print("Method: ensureCapacity(int)" + PRINTMSG);
         if (minCapacity > elementData.length
             && !(elementData == DEFAULTCAPACITY_EMPTY_ELEMENTDATA
                  && minCapacity <= DEFAULT_CAPACITY)) {
@@ -229,6 +242,7 @@ public class ArrayList<E> extends AbstractList<E>
      * @throws OutOfMemoryError if minCapacity is less than zero
      */
     private Object[] grow(int minCapacity) {
+        System.out.print("Method: grow(int)" + PRINTMSG);
         int oldCapacity = elementData.length;
         if (oldCapacity > 0 || elementData != DEFAULTCAPACITY_EMPTY_ELEMENTDATA) {
             int newCapacity = ArraysSupport.newLength(oldCapacity,
